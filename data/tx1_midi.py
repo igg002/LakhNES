@@ -127,8 +127,12 @@ def tx1_to_midi(tx1):
   eos = pretty_midi.TimeSignature(1, 1, nsamps / 44100.)
   midi.time_signature_changes.append(eos)
 
+  return midi
+
+def tx1_to_midi_string(tx1):
+  midi = tx1_to_midi(tx1)
   with tempfile.NamedTemporaryFile('rb') as mf:
     midi.write(mf.name)
-    midi = mf.read()
-
-  return midi
+    midi_str = mf.read()
+  
+  return midi_str

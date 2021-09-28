@@ -1,6 +1,6 @@
 from __future__ import print_function
 
-from tx1_midi import tx1_to_midi
+from tx1_midi import tx1_to_midi_string
 from tx2_midi import tx2_to_midi
 
 import nesmdb.convert
@@ -14,7 +14,7 @@ def tx1_to_wav(tx1_fp, out_fp, midi_downsample_rate=None):
   print('(Rate {}) {}->{}'.format(midi_downsample_rate, tx1_fp, out_fp))
   with open(tx1_fp, 'r') as f:
     tx1 = f.read()
-  midi = tx1_to_midi(tx1)
+  midi = tx1_to_midi_string(tx1)
   wav = nesmdb.convert.midi_to_wav(midi, midi_downsample_rate)
   wavwrite(out_fp, 44100, wav)
   print('Done: {}'.format(wav.shape))
