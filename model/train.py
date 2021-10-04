@@ -482,11 +482,11 @@ def train():
                     optimizer_sparse.param_groups[0]['lr'] = curr_lr * 2
             else:
                 if args.scheduler == 'cosine':
-                    scheduler.step(train_step)
+                    scheduler.step()
                     if args.sample_softmax > 0:
-                        scheduler_sparse.step(train_step)
+                        scheduler_sparse.step()
         elif args.scheduler == 'inv_sqrt':
-            scheduler.step(train_step)
+            scheduler.step()
 
         if train_step % args.log_interval == 0:
             cur_loss = train_loss / args.log_interval
